@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import AddNewToDo from './AddNewToDo';
+import ToDoList from './ToDoList';
+import EditToDoList from './EditToDoList'; /*Add as an import inside of the ToDoList?????????*/
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     
+        addNewToDo: "", //THIS WILL BE USED TO HELP IMPORT THE COMPONENT CALLED AddNewToDo.jsx
+        toDoList: "", //THIS WILL BE USED TO HELP IMPORT THE COMPONENT CALLED ToDoList.jsx
+        editToDoList: "", //THIS PART NEEDS TO BE EMBEDDED INSIDE OF 'ToDoList' *READ ARTICLE SENT FROM HENRY TO FIGURE THIS PART OUT*
     };
     this.onChange = this.onChange.bind(this)
     this.handleClick = this.handleClick.bind(this) 
@@ -17,13 +22,6 @@ class App extends Component {
 handleClick(e) {
     e.preventDefault(); //Stops the event at this point
     
-    this.setState
-    ({
-      createToDo : "",
-      selectPriority : "",
-      add : "",
-      output: ""
-    })
   }
 
 
@@ -32,42 +30,26 @@ handleClick(e) {
 <div className='container'>
     <header><h1 className='text-light'>Very Simple ToDo App</h1>
     </header>
-    <header><h4 className='text-light border-bottom'>Track all of the things</h4>
+    <header><h4 className='text-light border-bottom'><small>Track all of the things</small></h4><br></br>
     </header>
 
-  <div className="row">
-    <div className="col-sm-6">
 
-      <div className="card">
-        <div className="card-header mt-1">
-        <p>Add New ToDo</p>
-        </div>
-          <div className="card-body mb-2">
-          <h5 className="card-title"></h5>
-
-          <label htmlFor="createToDo"><strong>I want to..</strong>
-          </label>
-          <input type="text" value={this.state.createToDo} onChange={this.onChange} name="createToDo" className="form-control" id="createToDo" placeholder="Pleae Add a To-Do Item">
-          </input> 
-          <br></br>
-          <label htmlFor="selectPriority"><strong>How much of a priority is this?</strong>
-          </label>
-          
-          <select type="text" value={this.state.selectPriority} onChange={this.onChange} name="selectPriority" className="form-control" id="selectPriority" title="Select A Priority">
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
-          </select>
-          <br></br>
-          </div>
-          <div className="card-footer">
-          <button className="btn btn-block btn-round btn-success" name="add" id="add" onClick={this.handleClick}>Add</button>
-          </div>
-      
-      </div>
-
-    </div> 
-  </div>
+      {/* Renders Out The AddNewToDo Component BELOW */}
+    { 
+      this.state.addNewToDo.map(addToDo => (
+          <AddNewToDo
+              /* Figre out how to import the actual content of all of the divs inside here */
+              />
+      ))
+  }      
+     {/* Renders Out The ToDoList Component BELOW */}
+    { 
+      this.state.toDoList.map(toDoList => (
+          <ToDoList
+              /* Figre out how to import the actual content of all of the divs inside here */
+              />
+      ))
+  }    
 
 </div>
 
