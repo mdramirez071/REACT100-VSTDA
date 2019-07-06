@@ -1,7 +1,7 @@
 import React from 'react';
 import ViewToDo from './ViewToDo';
 
-class EditToDoList extends React.Component {
+class EditToDo extends React.Component {
          /* Still Need to Modify the HTML layout for this component */
     render() {
         return (
@@ -40,4 +40,4 @@ class EditToDoList extends React.Component {
     }
 
     }
-export default EditToDoList;
+export default EditToDo;

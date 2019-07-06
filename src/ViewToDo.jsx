@@ -17,7 +17,7 @@ class ViewToDo extends React.Component {
             <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input>
         <label class="form-check-label" for="defaultCheck1">
-        <li className="list-group-item"><div className="alert alert-warning"><strong>Go to Chase bank</strong></div></li>
+        <li className="alert alert-warning list-group-item"><strong>Go to Chase bank</strong></li>
         </label>
         </div> 
             <li className="list-group-item"><div className="alert alert-danger"><strong>Get your tire patched</strong></div></li>
