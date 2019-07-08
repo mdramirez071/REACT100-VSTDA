@@ -23,7 +23,7 @@ render() {
  return (
     <div className="card">
       <div className="card-header mt-1">
-        <p>Add New ToDo</p>
+        <p>Add New Todo</p>
       </div>
           <div className="card-body mb-2">
             <h5 className="card-title"></h5>
@@ -35,7 +35,7 @@ render() {
             <label htmlFor="priorityLevel"><strong>How much of a priority is this?</strong>
             </label>
             <select className="create-todo-priority" name="priorityLevel" id="priorityLevel" className="form-control" title="Select A Priority" type="number" value={this.state.priorityLevel} onChange={this.onChange}>
-            <option value="select" disabled>Select a Priority</option>
+            <option value="select" disabled>Select Priority Level</option>
             <option value="1">Low</option>
             <option value="2">Medium</option>
             <option value="3">High</option>

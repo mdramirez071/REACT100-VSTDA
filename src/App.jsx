@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import AddNewToDo from './AddNewToDo';
 import ViewToDo from './ViewToDo';
-//The EditToDoList portion will be imported inside of the ToDoList;
-const testData = [
-  {
-    toDoItem: 'Go to the Doctors for Injury for bruised ribs',
-    priorityLevel: 2,
-    completed: false,
-    id: 1,
-    editEnabled: false
-  },
-]
+//The Editing portion will be imported inside of the ViewToDo;
+// const testData = [
+//   {
+//     toDoItem: 'Go to the Doctors for Injury for bruised ribs',
+//     priorityLevel: 2,
+//     completed: false,
+//     id: 1,
+//     editEnabled: false
+//   },
+// ]
 let id = 1;
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
         toDoItems: []
     };
@@ -57,13 +57,16 @@ class App extends Component {
 
 <div className="col-sm-6">
       <ViewToDo
-       viewToDo={ this.viewToDo }
-       />
-      </div>
-      </div> 
-  </div>
-    );
-  }
+       toDoItems={this.state.toDoItems} handleRemove={this.handleRemove} toggleCheckBox={this.toggleCheckBox} handleEdit={this.handleEdit} handleSave={this.handleSave}/>
+       </div>
+
+
+     </div>
+
+   </div>
+ );
+}
 }
 
 export default App;
+
