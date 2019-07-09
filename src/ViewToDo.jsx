@@ -1,22 +1,28 @@
-import React from 'react';
-import EditToDo from './EditToDo'
+import React, { Component } from 'react';
+import ToDoItem from './ToDoItem';
 
-const ViewToDo = props => {
+class ViewToDo extends Component {
+//the actual list items will be rendered from ViewToDo to the ToDoItem component by mapping through each element
+//inside of the todos array which is accessible via props from the parent component. We then export the information/functionality in order to access
+//the ID, single todo items, the delete and edit functionality
+//Lines 17-18 utilizes an anonymous arrow function with a parameter 'todo' which returns each piece of information/functionality
+//that pertains to each element inside of the todos array.
+  render() {
     return (
-      <div className="card">
-        <p>View Todos</p>
-        <ul className="list-group">
-          {
-            props.toDoItems.map(item => {
-              return (
-                <EditToDo key={item.id} toDoItem={item.toDoItem} priorityLevel={item.priorityLevel} id={item.id} handleRemove={props.handleRemove} completed={item.completed} toggleCheckBox={props.toggleCheckBox} handleEdit={props.handleEdit} editEnabled={item.editEnabled} handleSave={props.handleSave}/>
-              )
-            })
-          }
-        </ul>
-  
+      <div>
+        <div className='card'>
+          <div className='card-header'>
+          View Todos
+          </div>
+            <ul className='list-group list-group-flush list-unstyled'>
+              { this.props.todos.map((todo) => { 
+              return <ToDoItem key={ todo.id } oneToDo={ todo } delToDo={ this.props.delToDo } editToDo={ this.props.editToDo } />;
+              })}
+            </ul>
+          </div>
       </div>
-    )
+    );
   }
+}
 
 export default ViewToDo;

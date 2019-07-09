@@ -1,72 +1,71 @@
 import React, { Component } from 'react';
-import AddNewToDo from './AddNewToDo';
+import AddTodo from './AddTodo';
 import ViewToDo from './ViewToDo';
-//The Editing portion will be imported inside of the ViewToDo;
-// const testData = [
-//   {
-//     toDoItem: 'Go to the Doctors for Injury for bruised ribs',
-//     priorityLevel: 2,
-//     completed: false,
-//     id: 1,
-//     editEnabled: false
-//   },
-// ]
-let id = 1;
-
+import uuid from 'uuid'; //uuid generates a random 'universal unique identifer' for each to-do item's id.
+//this is the parent component which renders out AddTodo and ViewToDo child components
+//we also need to bind the add,delete,and edit functionality to this component in order to allow the function themselves to run.
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-        toDoItems: []
+      todos: []
     };
-    this.addToDo = this.addToDo.bind(this); 
+    this.addToDo = this.addToDo.bind(this);
+    this.delToDo = this.delToDo.bind(this);
+    this.editToDo = this.editToDo.bind(this);
   }
+  addToDo(title, priority) {
+    const newToDo = {
+      title,
+      priority,
+      id: uuid()
+    };
+    this.setState({ todos: [...this.state.todos, newToDo] });
+  }
+//for the delete function we only want to pass in the id as the parameter because it is the actual id that acts
+//as a container for each to do item.
+  delToDo(id) {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+//the editToDo function will first grab the current ToDoItem by setting the todos array and setting that to a new arr called currentTodos
+//then using a for loop, we will iterate through the currentTodos array toDoItem by toDoitem we will then
+//using an if statement to essentially reassign the id number to that toDoItem as well as the newTitle and priority if they are updated to a newer value.
+//the array of todos will then have its state updated with the state of currentTodos
+  editToDo(newTitle, newPriority, id) {
+    const currentTodos = this.state.todos;
 
-  //The callback function below called addToDo has two parameters: the first parameter being the current toDoItem,
-  //and the 2nd parameter being the priority level of that toDoItem.
-  
-  addToDo(toDoItem, priorityLevel) {
-    if (toDoItem.length === 0) 
-    { //Counts the length of characters in the To Do Item.
-      alert('No To-Do Item Has Been Entered');
-      return; //is this return statement needed???? Test to find out!
+    for (let i = 0; i < currentTodos.length; i++) {
+      console.log(currentTodos[i].id);
+      if (currentTodos[i].id === id) { //the exact id must be selected in order to have the correct editTodo item be edited.
+        currentTodos[i].title = newTitle;
+        currentTodos[i].priority = newPriority;
+      }
     }
-    let addNewToDoItem = {toDoItem: toDoItem, priorityLevel: priorityLevel, completed: false, id: id, editEnabled: false};
-    this.state.toDoItems.push(addNewToDoItem);
-    this.setState({toDoItems: this.state.toDoItems});
-    //the id++ exist because if there are 0 items entered initially then by default that means
-    //that if a new ToDoItem gets entered that we will have to increment the id number by 1 in order to account
-    //for the fact that a ToDoItem has been added/created.
-    id++; 
-
+    this.setState({ todos: currentTodos });
   }
-
+  //the pieces of functionality/information that we want exported to the 'AddTodo' component is simply the addToDo function
+  //the functions/information that we want exported to the 'ViewToDo' component includes the state of the todos array,
+  //as well as the edit and delete functionality.
   render() {
     return (
-<div className='container'>
-    <header><h1 className='text-light'>Very Simple ToDo App</h1>
-    </header>
-    <header><h4 className='text-light border-bottom'><small>Track all of the things</small></h4><br></br>
-    </header>
-  <div className="row">
-  <div className="col-sm-6">
-      <AddNewToDo
-       addToDo={this.addToDo}
-      />
-    </div>
-
-<div className="col-sm-6">
-      <ViewToDo
-       toDoItems={this.state.toDoItems} handleRemove={this.handleRemove} toggleCheckBox={this.toggleCheckBox} handleEdit={this.handleEdit} handleSave={this.handleSave}/>
-       </div>
-
-
-     </div>
-
-   </div>
- );
-}
+      <div className='container'>
+        <div className='page-header border-bottom border-light'>
+          <h2 className='text-white'>Very Simple Todo App</h2>
+          <h6 className='text-white'>Track all of the things</h6>
+        </div>
+        <br></br>
+        <div className='row'>
+          <div className='col-md-4'>
+            <AddTodo addToDo={ this.addToDo } />
+          </div>
+          <div className='col-md-8'>
+            <ViewToDo todos={ this.state.todos } delToDo={ this.delToDo } editToDo={ this.editToDo } />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
-
