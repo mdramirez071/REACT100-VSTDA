@@ -27,33 +27,33 @@ class AddTodo extends Component {
 //in order to take advantage of the onChange and onClick events that occur below in our JSX code that is being returned from our AddToDo component
   render() {
     return (
-  <div>
-    <div className='card'>
-      <div className='card-header'>
-        Add New Todo
-      </div>
-      <div className='card-body'>
-        <form>
-          <div className='form-group'>
-            <label htmlFor='todoInput'><strong>I want to..</strong></label>
-            <textarea className='create-todo-text' id='todoInput' name='title' value={ this.state.title } onChange={ this.handleChange } />
+      <div>
+        <div className='card'>
+          <div className='card-header'>
+            Add New Todo
           </div>
-          <div className='form-group'>
-            <label htmlFor='selectPriority'><strong>How much of a priority is this?</strong></label>
-            <select className='create-todo-priority form-control' id='selectPriority' name='priority' value={ this.state.priority } onChange={ this.handleChange }>
-              <option value='0' disabled>Select a Priority Level</option>
-              <option value='1'>Low</option>
-              <option value='2'>Medium</option>
-              <option value='3'>High</option>
-            </select>
+          <div className='card-body'>
+            <form>
+              <div className='form-group'>
+                <label htmlFor='todoInput'><strong>I want to..</strong></label>
+                <textarea className='create-todo-text' id='todoInput' name='title' value={ this.state.title } onChange={ this.handleChange } />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='selectPriority'><strong>How much of a priority is this?</strong></label>
+                <select className='create-todo-priority form-control' id='selectPriority' name='priority' value={ this.state.priority } onChange={ this.handleChange }>
+                  <option value='0' disabled>Select a Priority Level</option>
+                  <option value='1'>Low</option>
+                  <option value='2'>Medium</option>
+                  <option value='3'>High</option>
+                </select>
+              </div>
+            </form>
           </div>
-        </form>
+          <div className='card-footer'>
+            <button className='create-todo btn btn-success btn-block' onClick={ this.submitToDo }>Add</button>
+          </div>
+        </div>
       </div>
-      <div className='card-footer'>
-        <button className='create-todo btn btn-success btn-block' onClick={ this.submitToDo }>Add</button>
-      </div>
-    </div>
-  </div>
     );
   }
 }

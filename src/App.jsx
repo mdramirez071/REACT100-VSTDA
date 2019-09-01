@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import AddTodo from './AddTodo';
 import ViewToDo from './ViewToDo';
-import uuid from 'uuid'; //uuid generates a random 'universal unique identifer' for each to-do item's id.
+
+//uuid generates a random 'universal unique identifer' for each to-do item's id.
+import uuid from 'uuid'; 
+
 //this is the parent component which renders out AddTodo and ViewToDo child components
 //we also need to bind the add,delete,and edit functionality to this component in order to allow the function themselves to run.
 class App extends Component {
